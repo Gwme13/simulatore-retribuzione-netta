@@ -1,0 +1,139 @@
+/*
+ * Global rules: everything that cannot be expressed as an inline style.
+ *
+ * That means the document reset, the range input (whose thumb and track are only
+ * reachable through vendor pseudo-elements), the hover and focus states, and the
+ * neutralisation of user-agent styles on the semantic elements the markup uses.
+ */
+
+body {
+  margin: 0;
+  background: #f4f6fa;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #2f5cff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1b3fcc;
+  text-decoration: underline;
+}
+
+/*
+ * Semantic elements are used for their meaning, not their default appearance:
+ * the lists and definition lists below carry structure for assistive technology
+ * while looking exactly like the plain containers of the reference design.
+ */
+ol,
+ul,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  min-width: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+output {
+  display: block;
+}
+
+figure {
+  margin: 0;
+}
+
+/* Range input: the fill and track are drawn by sibling elements, so the native
+   track stays transparent and only the thumb is styled here. */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+  height: 22px;
+  display: block;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 99px;
+  background: transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 22px;
+  width: 22px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #2f5cff;
+  box-shadow: 0 2px 8px rgba(15, 27, 46, 0.25);
+  cursor: pointer;
+}
+
+input[type='range']::-moz-range-track {
+  height: 6px;
+  border-radius: 99px;
+  background: transparent;
+}
+
+input[type='range']::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #2f5cff;
+  cursor: pointer;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hover states of the salary presets and of the info icon. */
+.preset-chip:hover,
+.info-icon:hover {
+  border-color: #2f5cff;
+  color: #2f5cff;
+}
+
+/* Content meant for assistive technology only, removed from the visual layout
+   without being removed from the accessibility tree. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyboard focus must stay visible everywhere, including on the custom controls. */
+:focus-visible {
+  outline: 2px solid #2f5cff;
+  outline-offset: 2px;
+}
